@@ -25,7 +25,7 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 Route::get('/blogs', [PublicationController::class, 'index'])->name('publications.blogs');
 Route::get('/blogs/{blog}', [PublicationController::class, 'show'])->name('publications.show');
-Route::post('/blogs/{blog}', [PublicationController::class, 'addComment'])->name('publications.show');
+Route::post('/blogs/{blog}', [PublicationController::class, 'addComment'])->name('comment.store');
 
 
 require __DIR__.'/auth.php';

@@ -17,5 +17,5 @@ class Publication extends Model
 
     public function type_demande() { return $this->belongsTo(TypeDemande::class,'demande_id'); }
 
-    public function commentaire(){return $this->hasMany(Commentaire::class);}
+    public function commentaire(){return $this->hasMany(Commentaire::class)->orderBy('created_at','DESC');}
 }

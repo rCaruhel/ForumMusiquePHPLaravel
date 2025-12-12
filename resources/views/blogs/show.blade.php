@@ -5,10 +5,6 @@
             <h1 class="text-4xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
                 {{ $blog->title }}
             </h1>
-            @if($request)
-                <h1>Requete : </h1>
-                <p>{{$request}}</p>
-            @endif
 
             <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full uppercase tracking-wide font-semibold mb-2">
                 {{ $blog->type_demande->name ?? 'Non classé' }}
@@ -45,7 +41,7 @@
             @auth
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
                     <h4 class="text-lg font-medium text-gray-900 mb-2">Ajouter un commentaire</h4>
-                    <form action="#" method="POST">
+                    <form action="{{ route('comment.store',$blog) }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <textarea

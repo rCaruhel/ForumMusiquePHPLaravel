@@ -19,16 +19,17 @@ class PublicationController extends Controller
         ]);
     }
 
-    public function addComment(Publication $publication, Request $request){
+    public function addComment(Publication $blog, Request $request){
         Commentaire::create([
-            'commment' => $request->input('comment'),
+            'comment' => $request->input('comment'),
+            'publication_id' => $blog->id,
             'user_id' => auth()->id(),
         ]);
-        return view('blogs.show',['blog' => $publication,'request' => $request]);
+        return view('blogs.show', ['blog' => $blog]);
     }
 
     public function show(Publication $blog,Request $request){
-        return view('blogs.show',['blog'=>$blog,'request' => $request]);
+        return view('blogs.show',['blog'=>$blog]);
     }
 
 
