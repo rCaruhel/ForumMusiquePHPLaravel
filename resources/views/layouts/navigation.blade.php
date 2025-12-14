@@ -26,13 +26,15 @@
                     </x-nav-link>
                     @endcan
                     @can('leave-group')
+                        <x-nav-link>
                         <form method="POST" action="{{ route('group.leave') }}">
                             @csrf
-                            @method('PATCH') <x-nav-link :href="route('group.leave')"
-                                                         onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Se barrer du groupe') }}
-                            </x-nav-link>
+                            @method('PATCH')
+
+                            <input type="submit" value="Se barrer du groupe">
                         </form>
+                        </x-nav-link>
+
                     @endcan
 
 
