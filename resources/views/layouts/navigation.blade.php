@@ -20,6 +20,22 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Utilisateurs') }}
                     </x-nav-link>
+                    @can('create-group')
+                    <x-nav-link :href="route('group.create')" :active="request()->routeIs('group.create')">
+                        {{ __('Créer un groupe') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('leave-group')
+                        <form method="POST" action="{{ route('group.leave') }}">
+                            @csrf
+                            @method('PATCH') <x-nav-link :href="route('group.leave')"
+                                                         onclick="event.preventDefault(); this.closest('form').submit();">
+                                {{ __('Se barrer du groupe') }}
+                            </x-nav-link>
+                        </form>
+                    @endcan
+
+
                 </div>
             </div>
 
@@ -78,6 +94,9 @@
 
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                 {{ __('Utilisateurs') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('group.create')" :active="request()->routeis('group.create')">
+                {{ __('Créer groupe') }}
             </x-responsive-nav-link>
         </div>
 

@@ -16,9 +16,6 @@
 
                         <div class="text-sm text-gray-500 space-y-1">
                             <p>Créateur : <span class="font-medium text-gray-700">{{$blog->user->name}}</span></p>
-                            <p>Catégorie : <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                {{$blog->type_demande->name ?? 'Aucune'}}
-                            </span></p>
                         </div>
 
                         @can('update-blog',$blog)

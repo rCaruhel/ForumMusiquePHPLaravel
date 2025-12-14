@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\UserController;
@@ -22,10 +23,16 @@ Route::middleware('auth')->group(function () {
 // Routes publiques avec les noms corrects pour la navigation
 Route::get('/users', [UserController::class, 'all'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::patch('/users/addToGroup/{user}', [UserController::class, 'addtogroup'])->name('users.addtogroup');
 
 Route::get('/blogs', [PublicationController::class, 'index'])->name('publications.blogs');
 Route::get('/blogs/{blog}', [PublicationController::class, 'show'])->name('publications.show');
 Route::post('/blogs/{blog}', [PublicationController::class, 'addComment'])->name('comment.store');
+
+
+Route::get('/group/create',[GroupController::class,'create'])->name('group.create');
+Route::post('/group/create',[GroupController::class,'store'])->name('group.store');
+Route::patch('/group/leave',[GroupController::class,'leave'])->name('group.leave');
 
 
 require __DIR__.'/auth.php';

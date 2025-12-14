@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Publication;
 use App\Models\User;
 use Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +25,19 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('update-blog', function (User $user, Publication $blog) {
             return $user->id === $blog->user_id; });
+
+        Gate::define('create-group', function (User $user) {
+            return $user->group_id===null;
+        });
+
+        Gate::define('leave-group', function (User $user) {
+            if(Auth::user() === $user && $user->group) return true;
+            return false;
+        });
+
+        Gate::define('addusertogroup', function (User $user) {
+            if (Auth::user()->group_id !==null) return true;
+            return false;
+        });
     }
 }

@@ -14,7 +14,18 @@
                         </a>
 
                         @if($user->group_id)
-                            <h2 class="text-sm font-medium text-indigo-600 mt-1">Groupe ID : {{$user->group_id}}</h2>
+                            <h2 class="text-sm font-medium text-indigo-600 mt-1">Groupe : {{$user->group->name}}</h2>
+                        @else
+                            @can('addusertogroup')
+
+                            <form method="POST" action="{{ route('users.addtogroup', $user) }}">
+                                @csrf
+                                @method('PATCH')
+
+                                <input type="submit" value="Ajouter au groupe">
+                            </form>
+                            @endcan
+
                         @endif
                     </div>
 
