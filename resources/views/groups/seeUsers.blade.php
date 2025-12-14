@@ -13,6 +13,7 @@
                             </h1>
                         </a>
 
+
                         @if($user->group_id)
                             <h2 class="text-sm font-medium text-indigo-600 mt-1">Groupe : {{$user->group->name}}</h2>
                         @else

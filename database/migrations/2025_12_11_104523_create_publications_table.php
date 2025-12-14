@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->boolean('is_request')->default(false);
-            $table->foreignIdFor(User::class,'user_id');
-            $table->foreignIdFor(TypeDemande::class,'demande_id');
+            $table->foreignIdFor(User::class,'user_id')->constrained();
+            $table->foreignIdFor(TypeDemande::class,'demande_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

@@ -56,6 +56,6 @@ class User extends Authenticatable
     }
 
     public function group(){
-        return $this->belongsTo(Groupe::class,'group_id');
+        return $this->belongsTo(Groupe::class);
     }
 }

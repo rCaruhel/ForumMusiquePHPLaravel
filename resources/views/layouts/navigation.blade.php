@@ -20,6 +20,12 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Utilisateurs') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('publications.newDemande')" :active="request()->routeIs('publications.new')">
+                        {{ __('Nouvelle question') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('publications.newPost')" :active="request()->routeIs('publications.new')">
+                        {{ __('Nouveau Post') }}
+                    </x-nav-link>
                     @can('create-group')
                     <x-nav-link :href="route('group.create')" :active="request()->routeIs('group.create')">
                         {{ __('Créer un groupe') }}

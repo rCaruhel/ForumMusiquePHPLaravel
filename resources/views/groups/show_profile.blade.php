@@ -14,8 +14,8 @@
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Groupe</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            @if($user->group_id && $user->groupe)
-                                {{ $user->groupe->name}}
+                            @if($user->group)
+                                {{ $user->group->name }}
                             @else
                                 <span class="text-gray-400 italic">N'est pas dans un groupe</span>
                             @endif
@@ -53,7 +53,7 @@
 
         <div class="space-y-6">
             @forelse($user->posts as $post)
-                <div class="bg-white shadow sm:rounded-lg p-6 border-l-4 {{ $post->is_request ? 'border-orange-400' : 'border-indigo-500' }}">
+                <div class="bg-white shadow sm:rounded-lg p-6 border-l-4 {{ $post->type_demande ? 'border-orange-400' : 'border-indigo-500' }}">
                     <div class="flex justify-between items-start">
                         <h3 class="text-lg font-medium text-gray-900">
                             <a href="{{ route('publications.show', $post) }}" class="hover:underline">{{ $post->title }}</a>
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="mt-1 mb-2">
-                        @if($post->is_request)
+                        @if($post->type_demande)
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-800">[Demande]</span>
                         @else
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">[Blog]</span>
@@ -72,10 +72,12 @@
                     </div>
 
                     <p class="text-gray-600 mt-2 mb-3 text-sm">{{ $post->description }}</p>
+                    @if($post->type_demande)
+                        <p class="text-xs text-gray-500">
+                            <em>Catégorie : {{ $post->type_demande->name}}</em>
+                        </p>
+                    @endif
 
-                    <p class="text-xs text-gray-500">
-                        <em>Catégorie : {{ $post->type_demande->name ?? '' }}</em>
-                    </p>
                 </div>
             @empty
                 <div class="text-center py-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">

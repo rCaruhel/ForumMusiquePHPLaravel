@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             return false;
         });
 
-        Gate::define('addusertogroup', function (User $user) {
+        Gate::define('addusertogroup', function () {
             if (Auth::user()->group_id !==null) return true;
             return false;
         });

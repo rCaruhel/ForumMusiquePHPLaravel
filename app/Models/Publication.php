@@ -11,6 +11,13 @@ class Publication extends Model
     /** @use HasFactory<\Database\Factories\PublicationFactory> */
     use HasFactory, Notifiable;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'is_request',
+        'demande_id',
+        'user_id',
+    ];
 
 
     public function user() { return $this->belongsTo(User::class, 'user_id'); }
