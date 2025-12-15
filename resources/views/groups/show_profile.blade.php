@@ -5,7 +5,7 @@
             <div class="px-4 py-5 sm:px-6">
                 <h1 class="text-3xl font-bold leading-6 text-gray-900">{{ $user->name }}</h1>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    Membre depuis le {{ $user->created_at->format('d/m/Y') }}
+                    Membre depuis le {{ $user->created_at }}
                 </p>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -78,6 +78,12 @@
                         </p>
                     @endif
                     <a href="/blogs/{{$post->id}}/edit">Modifier le poste</a>
+                    <form action="/blogs/{{$post->id}}" method="POST" >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Supprimer</button>
+
+                    </form>
 
                 </div>
             @empty

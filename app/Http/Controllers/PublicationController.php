@@ -28,6 +28,12 @@ class PublicationController extends Controller
         ]);
     }
 
+
+    public function destroyComment(Commentaire $commentaire){
+        $commentaire->delete();
+        return redirect()->back();
+    }
+
     public function addComment(Publication $blog, Request $request)
     {
         Commentaire::create([
@@ -53,6 +59,11 @@ class PublicationController extends Controller
     public function edit(Publication $blog){
         $type_demandes = TypeDemande::all();
         return view('blogs.edit', ['blog' => $blog,'type_demandes' => $type_demandes]);
+    }
+
+    public function destroy(Publication $blog){
+        $blog->delete();
+        return redirect()->route('publications.blogs', ['blogs' => $blog]);
     }
 
     public function update(Publication $blog){

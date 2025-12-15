@@ -32,8 +32,10 @@ Route::get('/blogs/{blog}/edit',[PublicationController::class,'edit'])->name('pu
 Route::get('/blogs/{blog}', [PublicationController::class, 'show'])->name('publications.show');
 Route::post('/user/{user}',[PublicationController::class,'store'])->name('publications.store');
 Route::patch('/blogs/{blog}',[PublicationController::class,'update'])->name('publications.update');
+Route::delete('/blogs/{blog}',[PublicationController::class,'destroy'])->name('publications.destroy');
 Route::post('/blogs/{blog}', [PublicationController::class, 'addComment'])->name('comment.store');
 
+Route::delete('/commentaire/{commentaire}',[PublicationController::class,'destroyComment'])->name('comment.destroy');
 
 Route::get('/group/create',[GroupController::class,'create'])->name('group.create');
 Route::post('/group/create',[GroupController::class,'store'])->name('group.store');

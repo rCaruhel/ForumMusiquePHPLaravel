@@ -29,9 +29,14 @@
             <a href="{{ route('publications.blogs') }}" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
                 &larr; Retour aux articles
             </a>
-
             @can('update-blog',$blog)
                 <a href="/blogs/{{$blog->id}}/edit" class="text-gray-500 hover:text-gray-700 text-sm font-medium">Modifier cet article</a>
+                <form action="/blogs/{{$blog->id}}" method="POST" >
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Supprimer</button>
+
+                </form>
             @endcan
         </div>
 
@@ -60,6 +65,7 @@
                 </div>
             @endauth
 
+
             <div class="space-y-6">
                 @foreach($blog->commentaire as $comment)
                     <div class="bg-gray-50 p-4 rounded-lg">
@@ -69,6 +75,7 @@
                             </h4>
                         </div>
                         <p class="text-gray-700">{{$comment->comment}}</p>
+
                     </div>
                 @endforeach
             </div>
