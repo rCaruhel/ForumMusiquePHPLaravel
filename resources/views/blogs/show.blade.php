@@ -75,7 +75,13 @@
                             </h4>
                         </div>
                         <p class="text-gray-700">{{$comment->comment}}</p>
-
+                        @can('update-blog',$blog)
+                            <form action="/commentaire/{{$comment->id}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Supprimer le comm</button>
+                            </form>
+                        @endcan
                     </div>
                 @endforeach
             </div>
