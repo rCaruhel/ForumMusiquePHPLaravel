@@ -12,8 +12,15 @@ class PublicationController extends Controller
 {
     public function index()
     {
-        $blogs = Publication::where('is_request', false)->with(['user', 'type_demande'])->get();
-        $questions = Publication::where('is_request', true)->with(['user', 'type_demande'])->get();
+        $blogs = Publication::where('is_request', false)
+            ->with(['user', 'type_demande'])
+            ->latest()
+            ->paginate(10, ['*'], 'blogs_page');
+
+        $questions = Publication::where('is_request', true)
+            ->with(['user', 'type_demande'])
+            ->latest()
+            ->paginate(10, ['*'], 'questions_page');
 
         return view('blogs.index', [
             'blogs' => $blogs,
@@ -43,7 +50,25 @@ class PublicationController extends Controller
         return view('blogs.newPost', ['type_demandes' => $type_demandes]);
     }
 
-    public function store(Request $request)
+    public function edit(Publication $blog){
+        $type_demandes = TypeDemande::all();
+        return view('blogs.edit', ['blog' => $blog,'type_demandes' => $type_demandes]);
+    }
+
+    public function update(Publication $blog){
+        if(!request('title')) $titr = $blog->title;
+        else $titr = request('title');
+        if(!request('description')) $desc = $blog->description;
+        else $desc = request('description');
+        $blog->update([
+            'title' => $titr,
+            'description' => $desc,
+            'demande_id'=> request('demande_id'),
+        ]);
+        return view('blogs.show', ['blog' => $blog]);
+    }
+
+    public function store(Request $request,User $user)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -58,7 +83,7 @@ class PublicationController extends Controller
             'is_request' => $validated['is_request'],
             'demande_id' => $validated['demande_id'] ?? null,
 
-            'user_id' => auth()->id(),
+            'user_id' =>$user->id,
         ]);
 
         $user = $request->user();

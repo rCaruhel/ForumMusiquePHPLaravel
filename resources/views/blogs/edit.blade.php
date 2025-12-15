@@ -1,11 +1,11 @@
 <x-app-layout>
-    <h1>Nouvelle question</h1>
+    <h1>Modifier la question</h1>
 
-    <form action="/user/{{Auth::user()->id }}" method="POST">
+    <form action="/blogs/{{$blog->id}}" method="POST">
+        @method('PATCH')
         @csrf
-
         <label for="title">Titre :</label><br>
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title" placeholder="{{$blog->title}}" >
         <br><br>
 
         <label for="demande_id">Catégorie :</label><br>
@@ -17,7 +17,7 @@
         <br><br>
 
         <label for="description">Description :</label><br>
-        <textarea name="description" id="description" rows="5" required></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="{{$blog->description}}"></textarea>
         <br><br>
         <input type="hidden" name="is_request" value="1">
 
@@ -28,3 +28,4 @@
         <button type="submit">Publier</button>
     </form>
 </x-app-layout>
+

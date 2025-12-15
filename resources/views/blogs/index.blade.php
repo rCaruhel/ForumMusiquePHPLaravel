@@ -28,6 +28,10 @@
                     <p class="text-gray-500 italic">Aucun article de blog pour le moment.</p>
                 @endforelse
             </div>
+
+            <div class="mt-6">
+                {{ $blogs->links() }}
+            </div>
         </div>
 
         <div>
@@ -63,6 +67,10 @@
                 @empty
                     <p class="text-gray-500 italic">Aucune question sur le forum pour le moment.</p>
                 @endforelse
+            </div>
+
+            <div class="mt-6">
+                {{ $questions->links() }}
             </div>
         </div>
     </div>

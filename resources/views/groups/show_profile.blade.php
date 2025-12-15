@@ -77,6 +77,7 @@
                             <em>Catégorie : {{ $post->type_demande->name}}</em>
                         </p>
                     @endif
+                    <a href="/blogs/{{$post->id}}/edit">Modifier le poste</a>
 
                 </div>
             @empty

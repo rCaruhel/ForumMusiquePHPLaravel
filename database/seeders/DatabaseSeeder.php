@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         TypeDemande::factory(6)->create();
 
-        Publication::factory(20)->create();
+        Publication::factory(30)->create();
         Commentaire::factory(150)->create();
 
     }

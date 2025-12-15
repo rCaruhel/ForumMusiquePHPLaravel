@@ -1,7 +1,7 @@
 <x-app-layout>
     <h1>Nouveau Post</h1>
 
-    <form action="{{ route('publications.store') }}" method="POST">
+    <form action="/user/{{Auth::user()->id }}" method="POST">
         @csrf
 
         <label for="title">Titre :</label><br>

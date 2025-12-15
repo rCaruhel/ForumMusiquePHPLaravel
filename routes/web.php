@@ -28,9 +28,12 @@ Route::patch('/users/addToGroup/{user}', [UserController::class, 'addtogroup'])-
 Route::get('/blogs', [PublicationController::class, 'index'])->name('publications.blogs');
 Route::get('/blogs/newDemande',[PublicationController::class,'showNewDemande'])->name('publications.newDemande');
 Route::get('/blogs/newPost',[PublicationController::class,'showNewPost'])->name('publications.newPost');
-Route::post('/blogs/new',[PublicationController::class,'store'])->name('publications.store');
+Route::get('/blogs/{blog}/edit',[PublicationController::class,'edit'])->name('publications.edit');
 Route::get('/blogs/{blog}', [PublicationController::class, 'show'])->name('publications.show');
+Route::post('/user/{user}',[PublicationController::class,'store'])->name('publications.store');
+Route::patch('/blogs/{blog}',[PublicationController::class,'update'])->name('publications.update');
 Route::post('/blogs/{blog}', [PublicationController::class, 'addComment'])->name('comment.store');
+
 
 Route::get('/group/create',[GroupController::class,'create'])->name('group.create');
 Route::post('/group/create',[GroupController::class,'store'])->name('group.store');

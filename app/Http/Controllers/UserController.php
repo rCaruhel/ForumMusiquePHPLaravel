@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function all(){
-        $users = User::all();
+        $users = User::all()->sortByDesc('created_at');
 
         return view('groups.seeUsers',['users'=>$users]);
     }

@@ -31,7 +31,7 @@
             </a>
 
             @can('update-blog',$blog)
-                <a href="#" class="text-gray-500 hover:text-gray-700 text-sm font-medium">Modifier cet article</a>
+                <a href="/blogs/{{$blog->id}}/edit" class="text-gray-500 hover:text-gray-700 text-sm font-medium">Modifier cet article</a>
             @endcan
         </div>
 
