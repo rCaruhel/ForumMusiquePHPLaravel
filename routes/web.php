@@ -6,9 +6,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicationController::class, 'index'])->name('publications.blogs');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,7 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Routes publiques avec les noms corrects pour la navigation
 Route::get('/users', [UserController::class, 'all'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::patch('/users/addToGroup/{user}', [UserController::class, 'addtogroup'])->name('users.addtogroup');

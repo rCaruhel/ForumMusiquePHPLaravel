@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('update-blog', function (User $user, Publication $blog) {
+            if(!Auth::user()) return false;
             return ($user->id === $blog->user_id || $user->is_admin === 1); });
 
         Gate::define('create-group', function (User $user) {

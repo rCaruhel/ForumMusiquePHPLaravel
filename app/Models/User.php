@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
     ];
 
     /**
@@ -52,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function posts(){
-        return $this->hasMany(Publication::class);
+        return $this->hasMany(Publication::class)->latest();
     }
 
     public function group(){

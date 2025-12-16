@@ -63,7 +63,7 @@ class PublicationController extends Controller
 
     public function destroy(Publication $blog){
         $blog->delete();
-        return redirect()->route('publications.blogs', ['blogs' => $blog]);
+        return redirect()->back();
     }
 
     public function update(Publication $blog){

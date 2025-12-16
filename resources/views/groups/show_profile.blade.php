@@ -77,6 +77,7 @@
                             <em>Catégorie : {{ $post->type_demande->name}}</em>
                         </p>
                     @endif
+                    @can('update-blog',$post)
                     <a href="/blogs/{{$post->id}}/edit">Modifier le poste</a>
                     <form action="/blogs/{{$post->id}}" method="POST" >
                         @csrf
@@ -84,7 +85,7 @@
                         <button type="submit">Supprimer</button>
 
                     </form>
-
+                    @endcan
                 </div>
             @empty
                 <div class="text-center py-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">

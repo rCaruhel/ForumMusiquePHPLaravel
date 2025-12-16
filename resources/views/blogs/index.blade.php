@@ -22,6 +22,12 @@
                             <div class="mt-4 pt-4 border-t border-gray-100">
                                 <a href="/blogs/{{ $blog->id }}/edit" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">Edit post &rarr;</a>
                             </div>
+                            <form action="/blogs/{{$blog->id}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Supprimer</button>
+
+                            </form>
                         @endcan
                     </div>
                 @empty
@@ -62,6 +68,12 @@
                             <div class="mt-4 pt-4 border-t border-gray-100">
                                 <a href="/blogs/{{ $question->id }}/edit" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">Edit question &rarr;</a>
                             </div>
+                            <form action="/blogs/{{$question->id}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Supprimer</button>
+
+                            </form>
                         @endcan
                     </div>
                 @empty

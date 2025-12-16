@@ -9,9 +9,9 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+{{--                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-nav-link>--}}
 
                     <x-nav-link :href="route('publications.blogs')" :active="request()->routeIs('publications.blogs')">
                         {{ __('Blogs & Questions') }}
@@ -20,28 +20,31 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Utilisateurs') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('publications.newDemande')" :active="request()->routeIs('publications.new')">
-                        {{ __('Nouvelle question') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('publications.newPost')" :active="request()->routeIs('publications.new')">
-                        {{ __('Nouveau Post') }}
-                    </x-nav-link>
-                    @can('create-group')
-                    <x-nav-link :href="route('group.create')" :active="request()->routeIs('group.create')">
-                        {{ __('Créer un groupe') }}
-                    </x-nav-link>
-                    @endcan
-                    @can('leave-group')
-                        <x-nav-link>
-                        <form method="POST" action="{{ route('group.leave') }}">
-                            @csrf
-                            @method('PATCH')
-
-                            <input type="submit" value="Se barrer du groupe">
-                        </form>
+                    @auth
+                        <x-nav-link :href="route('publications.newDemande')" :active="request()->routeIs('publications.new')">
+                            {{ __('Nouvelle question') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('publications.newPost')" :active="request()->routeIs('publications.new')">
+                            {{ __('Nouveau Post') }}
+                        </x-nav-link>
+                        @can('create-group')
+                            <x-nav-link :href="route('group.create')" :active="request()->routeIs('group.create')">
+                                {{ __('Créer un groupe') }}
+                            </x-nav-link>
+                        @endcan
+                        @can('leave-group')
+                            <x-nav-link>
+                                <form method="POST" action="{{ route('group.leave') }}">
+                                    @csrf
+                                    @method('PATCH')
 
-                    @endcan
+                                    <input type="submit" value="Se barrer du groupe">
+                                </form>
+                            </x-nav-link>
+
+                        @endcan
+
+                    @endauth
 
 
                 </div>

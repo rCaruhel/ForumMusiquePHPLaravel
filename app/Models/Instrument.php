@@ -12,7 +12,7 @@ class Instrument extends Model
     use HasFactory, Notifiable;
 
 
-    public function user(){
+    public function users(){
         return $this->belongsTo(User::class);
     }
 }
